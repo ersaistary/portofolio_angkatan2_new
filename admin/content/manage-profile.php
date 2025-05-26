@@ -3,9 +3,18 @@
     if(isset($_POST['simpan'])){
         $name = $_POST['name'];
         $description = $_POST['description'];
-        $time = $_POST['time'];
-        $position = $_POST['position'];
-        $position_desc = $_POST['position_desc'];
+        $time1 = $_POST['time1'];
+        $position1 = $_POST['position1'];
+        $position_desc1 = $_POST['position_desc1'];
+        $time2 = $_POST['time2'];
+        $position2 = $_POST['position2'];
+        $position_desc2 = $_POST['position_desc2'];
+        $time3 = $_POST['time3'];
+        $position3 = $_POST['position3'];
+        $position_desc3 = $_POST['position_desc3'];
+        $time4 = $_POST['time4'];
+        $position4 = $_POST['position4'];
+        $position_desc4 = $_POST['position_desc4'];
         $status = $_POST['status'];
         
         // var_dump();
@@ -15,13 +24,17 @@
             //perintah update
             $rowProfile = mysqli_fetch_assoc($queryProfile);
             $id = $rowProfile['id'];
-            $update = mysqli_query($config, "UPDATE about SET name='$name',description='$description',time='$time',position='$position',position_desc='$position_desc', status='$status' WHERE id = '$id'");
-            header ("location:?page=manage-profile&ubah=berhasil");
+            // $update = mysqli_query($config, "UPDATE about SET name='$name',description='$description',time1='$time1',position1='$position1',position_desc1='$position_desc1', status='$status' WHERE id = '$id'");
+            $updates= mysqli_query($config, "UPDATE `about` SET `name`='$name',`description`='$description',`time1`='$time1',`position1`='$position1',`position_desc1`='$position_desc1',`time2`='$time2',`position2`='$position2',`position_desc2`='$position_desc2',`time3`='$time3',`position3`='$position3',`position_desc3`='$position_desc3',`time4`='$time4',`position4`='$position4',`position_desc4`='$position_desc4',`status`='$status'  WHERE id = '$id'");
+            header('location:?page=manage-profile&edit=berhasil');
+
+            
+
         }else{
             // if(!empty($photo)){
                 //jika user upload gambar
             // }else{
-                $insertQ = mysqli_query ($config, "INSERT INTO `about`(`name`, `description`, `time`, `position`, `position_desc`, `status`) VALUES ('$name','$description','$time','$position','$position_desc','$status')");
+                $insertQ = mysqli_query ($config, "INSERT INTO `about`(`name`, `description`, `time1`, `position1`, `position_desc1`, `status`) VALUES ('$name','$description','$time1','$position1','$position_desc1','$status')");
                 header('location:?page=manage-profile&tambah=berhasil');
             // }
         }
@@ -113,13 +126,19 @@
             <textarea required id='summernote' name="description" class="form-control border border-secondary-subtle" placeholder="Description"><?= !isset($row['description'])? '' : $row['description']; ?></textarea> 
         </div>
     </div>
+    
 
+    <div class="row mb-3 mt-5" >
+        <label for="" class="form-label text-center fw-bold">
+            Position 1
+        </label>
+    </div>
    <div class="row mb-3">
         <div class="col-sm-2 text-center">
             <label for="" class="form-label">Time: *</label>
         </div>
         <div class="col-sm-10">
-            <input required name="time" type="date" class="form-control border border-secondary-subtle" placeholder="Time" value="<?= isset($row['time'])? $row['time'] : '' ?>"> 
+            <input required name="time1" type="text" class="form-control border border-secondary-subtle" placeholder="Time" value="<?= isset($row['time1'])? $row['time1'] : '' ?>"> 
         </div>
     </div>
 
@@ -128,7 +147,7 @@
             <label for="" class="form-label">Position: *</label>
         </div>
         <div class="col-sm-10">
-            <input required name="position" type="text" class="form-control border border-secondary-subtle" placeholder="Position" value="<?= isset($row['position'])? $row['position'] : '' ?>"> 
+            <input required name="position1" type="text" class="form-control border border-secondary-subtle" placeholder="Position" value="<?= isset($row['position1'])? $row['position1'] : '' ?>"> 
         </div>
     </div>
 
@@ -137,9 +156,107 @@
             <label for="" class="form-label">Position Description: *</label>
         </div>
         <div class="col-sm-10">
-            <input required name="position_desc" type="text" class="form-control border border-secondary-subtle" placeholder="Position Description" value="<?= isset($row['position_desc'])? $row['position_desc'] : '' ?>"> 
+            <input required name="position_desc1" type="text" class="form-control border border-secondary-subtle" placeholder="Position Description" value="<?= isset($row['position_desc1'])? $row['position_desc1'] : '' ?>"> 
         </div>
     </div>
+
+    <div class="row mb-3 mt-5" >
+        <label for="" class="form-label text-center fw-bold">
+            Position 2
+        </label>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Time: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="time2" type="text" class="form-control border border-secondary-subtle" placeholder="Time" value="<?= isset($row['time2'])? $row['time2'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Position: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="position2" type="text" class="form-control border border-secondary-subtle" placeholder="Position" value="<?= isset($row['position2'])? $row['position2'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Position Description: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="position_desc2" type="text" class="form-control border border-secondary-subtle" placeholder="Position Description" value="<?= isset($row['position_desc2'])? $row['position_desc2'] : '' ?>"> 
+        </div>
+    </div>
+
+
+    <div class="row mb-3 mt-5" >
+        <label for="" class="form-label text-center fw-bold">
+            Position 3
+        </label>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Time: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="time3" type="text" class="form-control border border-secondary-subtle" placeholder="Time" value="<?= isset($row['time3'])? $row['time3'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Position: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="position3" type="text" class="form-control border border-secondary-subtle" placeholder="Position" value="<?= isset($row['position3'])? $row['position3'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Position Description: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="position_desc3" type="text" class="form-control border border-secondary-subtle" placeholder="Position Description" value="<?= isset($row['position_desc3'])? $row['position_desc3'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3 mt-5" >
+        <label for="" class="form-label text-center fw-bold">
+            Position 4
+        </label>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Time: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="time4" type="text" class="form-control border border-secondary-subtle" placeholder="Time" value="<?= isset($row['time4'])? $row['time4'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Position: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="position4" type="text" class="form-control border border-secondary-subtle" placeholder="Position" value="<?= isset($row['position4'])? $row['position4'] : '' ?>"> 
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Position Description: *</label>
+        </div>
+        <div class="col-sm-10">
+            <input required name="position_desc4" type="text" class="form-control border border-secondary-subtle" placeholder="Position Description" value="<?= isset($row['position_desc4'])? $row['position_desc4'] : '' ?>"> 
+        </div>
+    </div>
+
 
     <div class="row mb-3">
         <div class="col-sm-2 text-center">

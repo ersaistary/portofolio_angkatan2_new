@@ -127,22 +127,24 @@
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
                     <div class="text-container second">
-                        <div class="time">2019 - PRESENT</div>
-                        <h6>Freelance Web Developer</h6>
-                        <p>Working happily on my own web projects</p>
-                        <div class="time">2018 - 2019</div>
-                        <h6>Lead Web Developer</h6>
-                        <p>Beautiful project for a major digital agency</p>
+                        <div class="time"><?php echo isset($rowProfile['time1'])? $rowProfile['time1'] : ''?></div>
+                        <h6><?php echo isset($rowProfile['position1'])? $rowProfile['position1'] : ''?></h6>
+                        <p><?php echo isset($rowProfile['position_desc1'])? $rowProfile['position_desc1'] : ''?></p>
+
+                        <div class="time"><?php echo isset($rowProfile['time2'])? $rowProfile['time2'] : ''?></div>
+                        <h6><?php echo isset($rowProfile['position2'])? $rowProfile['position2'] : ''?></h6>
+                        <p><?php echo isset($rowProfile['position_desc2'])? $rowProfile['position_desc2'] : ''?></p>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
                     <div class="text-container third">
-                        <div class="time">2017 - 2018</div>
-                        <h6>Senior Web Designer</h6>
-                        <p>Inhouse web designer for ecommerce firm</p>
-                        <div class="time">2016 - 2017</div>
-                        <h6>Junior Web Designer</h6>
-                        <p>Junior web designer for small web agency</p>
+                        <div class="time"><?php echo isset($rowProfile['time3'])? $rowProfile['time3'] : ''?></div>
+                        <h6><?php echo isset($rowProfile['position3'])? $rowProfile['position3'] : ''?></h6>
+                        <p><?php echo isset($rowProfile['position_desc3'])? $rowProfile['position_desc3'] : ''?></p>
+
+                        <div class="time"><?php echo isset($rowProfile['time4'])? $rowProfile['time4'] : ''?></div>
+                        <h6><?php echo isset($rowProfile['position4'])? $rowProfile['position4'] : ''?></h6>
+                        <p><?php echo isset($rowProfile['position_desc4'])? $rowProfile['position_desc4'] : ''?></p>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->

@@ -17,7 +17,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="?page=profile">Profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="?page=services">Services</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
