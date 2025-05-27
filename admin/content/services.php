@@ -5,7 +5,7 @@
     if(isset($_GET['delete'])){
         $id = $_GET['delete'];
         $queryDelete = mysqli_query($config, "DELETE FROM services WHERE id='$id'");
-        header("location:user.php?hapus=berhasil");
+        header("location:?page=services&hapus=berhasil");
     }
 ?>
 
@@ -19,6 +19,7 @@
                 <th>No</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Icon</th>
                 <th>Photo</th>
                 <th>action</th>
             </tr>
@@ -29,11 +30,12 @@
                     <td class="text-center"><?= $key + 1 ?></td>
                     <td><?= $data ['title']?></td>
                     <td><?= $data ['description']?></td>
+                    <td><?= $data ['icon']?></td>
                     <td><?= $data ['photo']?></td>
                     <td class="text-center">
                         <a href="?page=manage-services&edit=<?php echo $data['id']?>" class="btn btn-success btn-sm">Edit</a>
                         <!-- <a href="manage-services&edit=<?php echo $data['id']?>" class="btn btn-success btn-sm">Edit</a> -->
-                        <a href="user.php?delete=<?php echo $data['id']?>" onclick="return confirm('Are you sure?')"  class="btn btn-danger btn-sm">Delete</a>
+                        <a href="?page=services&delete=<?php echo $data['id']?>" onclick="return confirm('Are you sure?')"  class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             <?php endforeach?>

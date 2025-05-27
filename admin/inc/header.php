@@ -1,3 +1,7 @@
+<?php 
+    $id_level= isset($_SESSION['LEVEL'])? $_SESSION['LEVEL'] : '';
+?>
+
 <header class="shadow">
             <nav class="navbar navbar-expand-lg bg-body-white ">
                 <div class="container-fluid">
@@ -16,20 +20,21 @@
                                     Page
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="?page=profile">Profile</a></li>
+                                    <li><a class="dropdown-item" href="?page=profile">XXX</a></li>
                                     <li><a class="dropdown-item" href="?page=services">Services</a></li>
+                                    <!-- jika level = admin maka dapat halaman user kalau bukan maka jangan -->
+                                     <?php  if($id_level == 1) :?>
+                                    <li><a class="dropdown-item" href="?page=user">User</a></li>
+                                    <li><a class="dropdown-item" href="?page=tambah-user">Tambah User</a></li>
+                                    <?php endif?>
+                                    <li><a class="dropdown-item" href="?page=manage-profile">Profile</a></li>
+                                    <li><a class="dropdown-item" href="?page=testimonials">Testimonials</a></li>
+                                    <li><a class="dropdown-item" href="?page=question">Question</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item" href="?page=contact">Contact</a></li>
                                 </ul>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="?page=user">User</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="?page=manage-profile">Profile</a>
                             </li>
                         </ul>
 

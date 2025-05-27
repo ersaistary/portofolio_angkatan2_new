@@ -5,6 +5,7 @@ if (isset($_POST['simpan'])) {
     $title = $_POST['title'];
     $description = $_POST['description'];
     $photo = $_FILES['photo']['name'];
+    $icon = $_POST['icon'];
     $tmp_name = $_FILES['photo']['tmp_name'];
     $fileName = uniqid() . "_" . basename($photo);
     $filePath = "uploads/" . $fileName;
@@ -18,9 +19,9 @@ if (isset($_POST['simpan'])) {
             if (!empty($photo)) {
                 unlink("uploads/" . $rowService['photo']); // Hapus foto lama
                 move_uploaded_file($tmp_name, $filePath); // Simpan foto baru
-                $update = mysqli_query($config, "UPDATE services SET title='$title', description='$description', photo='$fileName' WHERE id ='$id'");
+                $update = mysqli_query($config, "UPDATE services SET title='$title', description='$description', icon='$icon', photo='$fileName' WHERE id ='$id'");
             } else {
-                $update = mysqli_query($config, "UPDATE services SET title='$title', description='$description' WHERE id ='$id'");
+                $update = mysqli_query($config, "UPDATE services SET title='$title', description='$description', icon='$icon' WHERE id ='$id'");
             }
             header("location:?page=manage-services&ubah=berhasil");
         } else {
@@ -30,11 +31,11 @@ if (isset($_POST['simpan'])) {
         // INSERT DATA BARU 
         if (!empty($photo)) {
             move_uploaded_file($tmp_name, $filePath);
-            $insertQ = mysqli_query($config, "INSERT INTO services (title, description, photo) 
-            VALUES ('$title', '$description','$fileName')");
+            $insertQ = mysqli_query($config, "INSERT INTO services (title, description, photo, icon) 
+            VALUES ('$title', '$description','$fileName', '$icon')");
         } else {
-            $insertQ = mysqli_query($config, "INSERT INTO services (title, description) 
-            VALUES ('$title', '$description')");
+            $insertQ = mysqli_query($config, "INSERT INTO services (title, description, icon) 
+            VALUES ('$title', '$description', 'icon')");
         }
         header("location:?page=manage-services&tambah=berhasil");
     }
@@ -56,6 +57,10 @@ $selectService = mysqli_query($config, "SELECT * FROM services");
         <div class="mb-3">
             <label class="form-label">Description</label>
             <textarea class="form-control" name="description" cols="30" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Icon</label>
+            <input type="text" value="" class="form-control" name="icon">
         </div>
         <div class="mb-3">
             <label class="form-label">Photo</label>

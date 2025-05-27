@@ -1,13 +1,20 @@
 <?php 
+    if($_SESSION['LEVEL'] != 1){
+        echo "<h1>Anda tidak berhak ke sini</h1>";
+        echo "<a href='dashboard.php' class='btn btn-warning'>Kembali</a>";
+        die;
+        //header (location:dashboard.php?failed=access); (redirect ke dashboard langsung tapi ngelempah parameter ke link)
+    }
     if(isset($_POST['simpan'])){
         $name = $_POST['name'];
         $email = $_POST['email'];
+        $id_level = $_POST['id_level'];
         $password = sha1($_POST['password']);
 
-        $query = mysqli_query($config, "INSERT INTO users (name, email, password)
-        VALUES ('$name', '$email', '$password')");
+        $query = mysqli_query($config, "INSERT INTO users (name, email, password, id_level)
+        VALUES ('$name', '$email', '$password', '$id_level')");
         if($query){
-            header("location:user.php?tambah=berhasil");
+            header("location:?page=user&tambah=berhasil");
         }
 
     }
@@ -20,24 +27,49 @@
     if(isset($_POST['edit'])){
         $name = $_POST['name'];
         $email = $_POST['email'];
+        $id_level = $_POST['id_level'];
         $password = sha1($_POST['password']);
 
-        $queryUpdate = mysqli_query($config, "UPDATE users SET name = '$name', email = '$email', password='$password' WHERE id = '$id_user'");
+        if($password ==''){
+            $queryUpdate = mysqli_query($config, "UPDATE users SET id_level = '$id_level', name = '$name', email = '$email' WHERE id = '$id_user'");
+        }
+        $queryUpdate = mysqli_query($config, "UPDATE users SET id_level = '$id_level', name = '$name', email = '$email', password='$password' WHERE id = '$id_user'");
         if ($queryUpdate){
-            header("location:user.php? ubah=berhasil");
+            header("location:?page=user&ubah=berhasil");
         }
 
     }
+
+    $queryLevel = mysqli_query($config, "SELECT * FROM levels ORDER BY id DESC");
+    $rowLevel = mysqli_fetch_all($queryLevel, MYSQLI_ASSOC);
 ?>
 
 <form action="" method="post">
     <div class="row mb-3">
         <div class="col-sm-2 text-center">
+            <label for="" class="form-label">Nama Level: *</label>
+        </div>
+        <div class="col-sm-10">
+            <select name="id_level" class="form-control" id="">
+                <option value="">Pilih Level</option>
+                <!-- data option diambil dari table levels -->
+                 <?php foreach ($rowLevel as $key => $level): ?>
+                    <option <?php echo isset($_GET['edit'])? ($level['id'] == $rowEdit['id_level'])? 'selected' : '' : ''?> 
+                        value="<?php echo $level['id']?>"> 
+                    <?php echo $level['name_level']?>
+                    </option> 
+                <?php endforeach ?>
+                <!-- end option -->
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 text-center">
             <label for="" class="form-label">Nama: *</label>
         </div>
         <div class="col-sm-10">
-            <input required name="name" type="text" class="form-control border border-secondary-subtle" placeholder="Insert Your Name" 
-                                            value="<?= isset($rowEdit['name'])? $rowEdit['name'] : '' ?>">
+            <input required name="name" type="text" class="form-control border border-secondary-subtle" placeholder="Insert Your Name" value="<?= isset($rowEdit['name'])? $rowEdit['name'] : '' ?>">
         </div>
     </div>
 

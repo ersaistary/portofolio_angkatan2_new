@@ -4,6 +4,15 @@
     //query profile
     $queryProfile = mysqli_query($config, "SELECT * FROM about ORDER BY id DESC");
     $rowProfile = mysqli_fetch_assoc($queryProfile);
+
+    //queru services
+    $queryServices = mysqli_query($config, "SELECT * FROM services ORDER BY id DESC");
+    $rowServices = mysqli_fetch_all($queryServices, MYSQLI_ASSOC);
+
+    //query testimonial
+    $queryTestimonials = mysqli_query($config, "SELECT * FROM testimonials ORDER BY id DESC");
+    $rowTestimonials = mysqli_fetch_all($queryTestimonials, MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,27 +172,15 @@
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="text-box">
-                        <i class="far fa-gem"></i>
-                        <h4>DESIGN</h4>
-                        <p>Successful online projects start with good design. It establishes a solid foundation for future development and allows for long term growth</p>
-                    </div> <!-- end of text-box -->
-                </div> <!-- end of col -->
-                <div class="col-lg-4">
-                    <div class="text-box">
-                        <i class="fas fa-code"></i>
-                        <h4>DEVELOPMENT</h4>
-                        <p>I can code my own designs or even use the customer's design as base. My focus is to generate clean code that's well structured for reliability</p>
-                    </div> <!-- end of text-box -->
-                </div> <!-- end of col -->
-                <div class="col-lg-4">
-                    <div class="text-box">
-                        <i class="fas fa-tv"></i>
-                        <h4>BASIC SEO</h4>
-                        <p>i can setup your project to use basic SEO principles which will push your project to the first page on search engines and save you ads money</p>
-                    </div> <!-- end of text-box -->
-                </div> <!-- end of col -->
+                <?php foreach ($rowServices as $key => $data):?>
+                    <div class="col-lg-4">
+                        <div class="text-box">
+                            <i class="<?= $data ['icon'] ?>"></i>
+                            <h4><?= $data ['title']?></h4>
+                            <p><?= $data ['description']?></p>
+                        </div> <!-- end of text-box -->
+                    </div> <!-- end of col -->
+                <?php endforeach?>
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of basic-2 -->
@@ -264,7 +261,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/project-4.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/project-4.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Evolosim, <strong>Project:</strong> complete redesign of their corporate website and platform update for their online shop <a class="blue" href="project.html">details</a></p>
@@ -284,7 +281,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/work-1.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/work-1.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Zigoland, <strong>Project:</strong> started a new website from ground up for a new product <a class="blue" href="project.html">details</a></p>
@@ -294,7 +291,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/work-2.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/work-2.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Visodream, <strong>Project:</strong> developed a new forum for the Visodream community <a class="blue" href="project.html">details</a></p>
@@ -304,7 +301,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/work-3.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/work-3.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Primoday, <strong>Project:</strong> complete redesign of their corporate website and platform <a class="blue" href="project.html">details</a></p>
@@ -316,7 +313,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/work-4.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/work-4.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Nextlite, <strong>Project:</strong> created a custom video editing and upload web app <a class="blue" href="project.html">details</a></p>
@@ -326,7 +323,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/work-5.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/work-5.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Syncnow, <strong>Project:</strong> web design for their corporate websites and landing pages <a class="blue" href="project.html">details</a></p>
@@ -336,7 +333,7 @@
                     <div class="text-container">
                         <div class="image-container">
                             <a href="project.html">
-                                <img class="img-fluid" src="images/work-6.jpg" alt="alternative">
+                                <img class="img-fluid" src="depan/images/work-6.jpg" alt="alternative">
                             </a>
                         </div> <!-- end of image-container -->
                         <p><strong>For:</strong> Shifter, <strong>Project:</strong> started a new website from ground up for a new product <a class="blue" href="project.html">details</a></p>
@@ -359,51 +356,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="testimonial-text">“Mark is a skilled developer which will do everything possible to deliver the project on time and I really appreciate that”</p>
-                            <div class="details">
-                                <img src="images/testimonial-1.jpg" alt="alternative">
-                                <div class="text">
-                                    <div class="testimonial-author">Samantha Bloom</div>
-                                    <div class="occupation">Team Leader - Syncnow</div>
-                                </div> <!-- end of text -->
-                            </div> <!-- end of testimonial-details -->
+                    <?php foreach ($rowTestimonials as $key => $data):?>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="testimonial-text">“<?= $data ['testi']?>”</p>
+                                <div class="details">
+                                    <div class="text">
+                                        <div class="testimonial-author"><?= $data ['name']?></div>
+                                        <div class="occupation"><?= $data ['occupation']?></div>
+                                    </div> <!-- end of text -->
+                                </div> <!-- end of testimonial-details -->
+                            </div>
                         </div>
-                    </div>
-                    <!-- end of card -->
-
+                        <!-- end of card -->
+                    <?php endforeach?>
                     <!-- Card -->
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="testimonial-text">“Loved to work with Mark he's such an awesome developer with great attention to details. He also has a great eye for design”</p>
-                            <div class="details">
-                                <img src="images/testimonial-2.jpg" alt="alternative">
-                                <div class="text">
-                                    <div class="testimonial-author">John Rowling</div>
-                                    <div class="occupation">Marketing Manager - Nexlite</div>
-                                </div> <!-- end of text -->
-                            </div> <!-- end of testimonial-details -->
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="testimonial-text">“So glad we started working with Mark. We've used many times his design and development skills for our inhouse online projects”</p>
-                            <div class="details">
-                                <img src="images/testimonial-3.jpg" alt="alternative">
-                                <div class="text">
-                                    <div class="testimonial-author">Lana Smith</div>
-                                    <div class="occupation">General Manager - Shifter</div>
-                                </div> <!-- end of text -->
-                            </div> <!-- end of testimonial-details -->
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
