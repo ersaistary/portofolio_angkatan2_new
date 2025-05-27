@@ -30,6 +30,9 @@
                                     <li><a class="dropdown-item" href="?page=manage-profile">Profile</a></li>
                                     <li><a class="dropdown-item" href="?page=testimonials">Testimonials</a></li>
                                     <li><a class="dropdown-item" href="?page=question">Question</a></li>
+                                    <li><a class="dropdown-item" href="?page=area1">Area 1</a></li>
+                                    <li><a class="dropdown-item" href="?page=area1_content">Area 1 Content</a></li>
+                                    <li><a class="dropdown-item" href="?page=project">Project</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
