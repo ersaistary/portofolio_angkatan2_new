@@ -66,14 +66,7 @@
 	<!-- Favicon  -->
     <link rel="icon" href="images/favicon.png">
 
-    <style>
-    .area-1 { 
-        height: 430px; 
-        background: linear-gradient(to bottom right, rgba(25, 26, 29, 0.5), rgba(25, 26, 29, 0.5)), 
-        url('<?php echo $imagePath; ?>') center center no-repeat; 
-        background-size: cover; 
-    }
-</style>
+    
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
     
@@ -82,7 +75,7 @@
         <div class="container">
             
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="index.html"><img src="depan/images/logo.svg" alt="alternative"></a>  
+            <a class="navbar-brand logo-image" href="index.php"><img src="depan/images/logo.svg" alt="alternative"></a>  
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Mark</a> -->
@@ -132,7 +125,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="text-container">
-                        <h1 class="h1-large">I love to create beautiful and efficient websites</h1>
+                        <h1 class="h1-large"><?php echo isset($rowHeader['head'])? $rowHeader['head'] : ''?></h1>
                         <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
                         <a class="btn-outline-lg page-scroll" href="#contact"><i class="fas fa-user"></i>Contact Me</a>
                     </div> <!-- end of text-container -->
@@ -210,7 +203,7 @@
 	<div class="split">
 		<div class="area-1">
             <?php if (isset($rowArea1['photo']) && !empty($rowArea1['photo'])): ?>
-                <img src="admin/uploads/<?php echo ($rowArea1['photo']); ?>" alt="Profile Photo" class="img-fluid" style="height: 700px;">
+                <img src="admin/uploads/<?php echo ($rowArea1['photo']); ?>" alt="Profile Photo" class="img-fluid" style="width: 20000px;">
             <?php else: ?>
                 <p>Tidak ada foto yang tersedia.</p>
             <?php endif; ?>

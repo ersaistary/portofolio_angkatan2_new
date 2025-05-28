@@ -17,11 +17,9 @@ if (isset($_POST['simpan'])) {
         if (mysqli_num_rows($queryProject) > 0) {
             $rowProject = mysqli_fetch_assoc($queryProject);
             if (!empty($imageUploadName)) {
-                // Delete the old image file if exists
                 if (!empty($rowProject['image']) && file_exists("uploads/" . $rowProject['image'])) {
                     unlink("uploads/" . $rowProject['image']);
                 }
-                // Move the new file upload
                 move_uploaded_file($tmp_name, $filePath);
                 $update = mysqli_query($config, "UPDATE project SET `for`='$for', description='$description', image='$fileName' WHERE id='$id'");
             } else {
@@ -33,7 +31,6 @@ if (isset($_POST['simpan'])) {
             echo "Data tidak ditemukan untuk diupdate!";
         }
     } else {
-        // INSERT new record into project table
         if (!empty($imageUploadName)) {
             move_uploaded_file($tmp_name, $filePath);
             $insert = mysqli_query($config, "INSERT INTO project (`for`, description, image) VALUES ('$for', '$description', '$fileName')");
@@ -45,8 +42,8 @@ if (isset($_POST['simpan'])) {
     }
 }
 
-// Optional: Retrieve all data to display if needed later
 $selectProject = mysqli_query($config, "SELECT * FROM project");
+$row= mysqli_fetch_assoc($selectProject);
 ?>
 
 <!-- FORM INPUT -->
@@ -57,11 +54,11 @@ $selectProject = mysqli_query($config, "SELECT * FROM project");
     <div>
         <div class="mb-3">
             <label class="form-label">For</label>
-            <input type="text" value="" class="form-control" name="for">
+            <input type="text" value="<?= isset($row['for'])? $row['for'] : '' ?>" class="form-control" name="for">
         </div>
         <div class="mb-3">
             <label class="form-label">Description</label>
-            <textarea class="form-control" name="description" cols="30" rows="5"></textarea>
+            <textarea class="form-control" name="description" cols="30" rows="5"><?= isset($row['description'])? $row['description'] : '' ?></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Image</label>

@@ -6,10 +6,9 @@ if (isset($_POST['simpan'])) {
     $tmp_name = $_FILES['photo']['tmp_name'];
     $fileName = uniqid() . "_" . basename($photo);
     $filePath = "uploads/" . $fileName;
-    $id = $_POST['id']; // ID untuk update jika tersedia
+    $id = $_POST['id']; 
 
     if (!empty($id)) {
-        // UPDATE DATA berdasarkan ID yang dipilih
         $queryArea1 = mysqli_query($config, "SELECT * FROM area1 WHERE id='$id'");
         if (mysqli_num_rows($queryArea1) > 0) {
             $rowArea1 = mysqli_fetch_assoc($queryArea1);
