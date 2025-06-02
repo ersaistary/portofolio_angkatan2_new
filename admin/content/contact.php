@@ -17,7 +17,7 @@
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Projects Detail</th>
-                <!-- <th>Action</th> -->
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +27,8 @@
                     <td><?= $data ['name']?></td>
                     <td><?= $data ['email']?></td>
                     <td><?= $data ['project_details']?></td>
+                    <td><a href="?page=balas-pesan&idPesan=<?php echo $data['id']?>" class="btn btn-success">Balas Pesan</a></td>
+                    
                     <!-- <td class="text-center">
                         <a href="?delete=<?php echo $data['id']?>" onclick="return confirm('Are you sure?')"  class="btn btn-danger btn-sm">Delete</a>
                     </td> -->
